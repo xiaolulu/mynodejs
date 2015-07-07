@@ -1,0 +1,100 @@
+
+.clearfix:after {
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+}
+
+
+
+.ellipsis{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	display: block;
+}
+.clearfix { display: inline-table; }
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
+/****************************/
+
+body{
+    background: url( /public/imgs/body_bg.png );
+}
+header{
+    width: 960px;
+    margin: 10px auto;
+    height: 60px;
+    clear: both;
+}
+
+h1{
+    color: #fff;
+    font-size: 24px;
+    float: left;    
+}
+menu{
+    float: right;
+}
+menu a.menuLink{
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+    line-height: 40px;
+    display: none;
+}
+button{
+    padding: 4px 20px;
+}
+a{
+    color: #fff;
+    text-decoration: none;
+}
+/***************************************************************/
+.wrapper{
+    width: 960px;
+    margin: 20px auto;
+}
+.container{
+    background: #fff;
+    margin: 10px auto;    
+}
+
+.form{
+    width: 400px;
+    background: #fff;
+    padding: 50px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    margin: 0 auto;
+}
+
+.form label{
+    display: block;
+    padding: 10px;
+}
+.form label tt{
+    display: inline-block;
+    width: 100px;
+    text-align: right;
+    padding-right: 10px;
+}
+.form label input{
+    height: 28px;
+    line-height: 28px;
+    padding: 0 5px;
+}
+.form button{
+    margin-left: 160px;
+}
+
+/**********************/
+.nav a{
+    color: #333;
+}
+
+/******************************************/
+

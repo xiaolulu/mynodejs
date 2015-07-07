@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title><%= title %></title>
+<link href="/public/css/style.css" rel="stylesheet" >
+<link href="<%= basePath %>/module<%= currentPage %>.css" type="text/css" rel="stylesheet" >
+<script>
+var basePath = '<%= basePath %>';
+</script>
+</head>
+<body>
+<header class="clearfix">
+   <h1><a href="/"><img src="/public/imgs/logo.png" /> 我的nodejs项目</a></h1>
+   <menu>    
+        <a class="menuLink beforeLogin" href="/register">注册</a>
+        <a class="menuLink beforeLogin" href="/login">登录</a>
+        <a class="menuLink afterLogin menu_username" href="/user/center"></a>
+        <a class="menuLink afterLogin" href="/logout">退出</a>
+    </menu>
+</header>
+<section class="wrapper">
+
