@@ -1,7 +1,13 @@
-var db = require( '../db/sql' );
+var db = require( '../db/sql' ),
+	crypto = require( 'crypto' );
+var md5 = function(data) { 
+	
+    return crypto.createHash('md5').update(data).digest('hex').toLowerCase();  
 
+} 
 function addUser( req, res ){
     var data = req.body;
+	data.password = md5( data.password );
     data.date = new Date();
     data.disabled = true;
     db.addUser( data, function( err, doc ){
@@ -13,6 +19,7 @@ function addUser( req, res ){
 
 function findUser( req, res ){
     var data = req.body;
+	data.password = md5( data.password );
     db.findUser( data, function( err, doc ){
         if( !err ){
                if( doc ){

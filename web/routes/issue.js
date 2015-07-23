@@ -7,6 +7,7 @@ function index( req, res ){
 }
 
 function register( req, res ){
+	console.log( 'reqpath');
     res.render( 'issue/register.ejs', site.setting( req, '/issue' ) );
 }
 

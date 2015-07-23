@@ -1,24 +1,44 @@
 
 var issue = require( './issue' ),
         user = require( './user' ),
+	domain = require( 'domain' ),
         privilege = require( '../config/privilege' ),
-        session = require( 'express-session' );
+        session = require( 'express-session' ),
+	gadget = require( '../tool/gadget' );
+
+var Domain = domain.create();
+
+Domain.on( 'error', function( e ){
+	console.log( 'error' + e );
+})
+
 exports.all = function( app ){
     app.use( session({
 		resave: false,
 		saveUninitialized: false,
 		secret: 'upopen'
 	}))
-    app.use( function( req, res, next){
-        if( privilege[ req.path ] && req.path != '/login' && !req.session.status ){
+    app.use( function( req, res, next){	
+		console.log( req.path );  
+		gadget.logInfo.info( req.path );
+		try{
+			if( privilege[ req.path ] && req.path != '/login' && !req.session.status ){
+				console.log( req.session.status );
                 if( req.method == 'GET' ){
-                res.redirect('/login');
-                } else {
-                    res.send( { code: 1001, msg: 'need you to log in'})    
-                }           
-        } else {
-           next();
-        }
+		            res.redirect('/login');
+		            } else {
+		                res.send( { code: 1001, msg: 'need you to log in'})    
+		            }           
+		    } else {	
+				Domain.run( function(){
+					 next();
+				});
+		    }
+		} catch( e ){
+			gadget.logInfo.error( req.path );
+			res.redirect( '/' );
+		}	
+        
     })
     app.get( '/', function( req, res ){
         issue.index( req, res );
@@ -34,7 +54,7 @@ exports.all = function( app ){
         res.setHeader("Set-Cookie","username=null;" );
         res.redirect( '/' );
     })
-    app.get( '/register', function( req, res ){    
+    app.get( '/register', function( req, res ){  
         issue.register( req, res );
     });
     app.post('/register', function( req, res ){

@@ -3,7 +3,7 @@ define( function(){
 
     if( username ){
           $( '.afterLogin' ).show();
-        $( '.menu_username' ).html( 'username' );
+        $( '.menu_username' ).html( username );
     } else {
         $( '.beforeLogin' ).show();
     }

@@ -2,14 +2,15 @@ require.config({
 	baseUrl: basePath,
 	paths: {
 		all: 'public/js/all',
+		md5: 'core/js/md5'
 	}
 })
 
-define( ['all'], function(){
+define( ['md5','all'], function( md5 ){
     $( '#registerForm' ).on( 'submit', function(){
         var data = {
             username: $('#username').val(),
-            password: $('#password').val(),
+            password: md5.hex_md5( $('#password').val() ),
             email: $('#email').val()  
         }
         $.ajax({
